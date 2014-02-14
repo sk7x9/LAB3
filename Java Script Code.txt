@@ -1,0 +1,124 @@
+/*1.Geolocation*/
+var map;
+var elevator;
+var myOptions = {
+    zoom: 6,
+    mapTypeId: 'terrain'
+};
+map = new google.maps.Map($('#map')[0], myOptions);
+var markers = [];
+
+ // Try HTML5 geolocation
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = new google.maps.LatLng(position.coords.latitude,
+                                       position.coords.longitude);
+
+      var infowindow = new google.maps.InfoWindow({
+        map: map,
+        position: pos,
+        content: 'Location.'
+      });
+
+      map.setCenter(pos);
+    }, function() {
+      handleNoGeolocation(true);
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleNoGeolocation(false);
+  }
+/*2.Directions*/
+var directionDisplay;
+var directionsService = new google.maps.DirectionsService();    
+var map1;
+var Source;
+var dest;
+
+function initialize()
+{
+    var Source = document.getElementById("A").value;
+    var dest = document.getElementById("B").value;
+    if(Source==""&& Destination=="")
+    {
+        
+    }
+else
+{
+    document.getElementById("map_view").hidden = false;
+    directionsDisplay = new google.maps.DirectionsRenderer();        
+    var center = new google.maps.LatLng(0, 0);     
+    var myOptions =
+    {
+            zoom:8,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            center: center
+    }
+    map1 = new google.maps.Map(document.getElementById("map_view"), myOptions);
+    directionsDisplay.setMap(map1);
+
+    var request =
+    {
+            origin:Source,
+            destination:dest,
+            travelMode: google.maps.DirectionsTravelMode.DRIVING         
+    };
+    directionsService.route(request, function(response, status)
+    {
+            if (status == google.maps.DirectionsStatus.OK) 
+            {
+            directionsDisplay.setDirections(response);         
+            }
+    });
+}
+}
+
+var button = document.getElementById('button');
+
+var onClick = function() { 
+    initialize();
+};
+
+button.addEventListener('click', onClick, false);
+
+var clbutton = document.getElementById('clbutton');
+
+var onClClick=function(){
+    document.getElementById("map_view").hidden = true;
+    document.getElementById("A").value="";
+    document.getElementById("B").value="";
+   
+};
+
+clbutton.addEventListener('click', onClClick, false);
+// 3.Image
+
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+
+// Create gradient
+var grd=ctx.createRadialGradient(75,50,5,90,60,100);
+grd.addColorStop(0,"green");
+grd.addColorStop(1,"black");
+
+// Fill with gradient
+ctx.fillStyle=grd;
+ctx.fillRect(10,10,150,80);
+
+/*4.Audio*/
+
+var button = document.getElementById('playbutton');
+var audio = document.getElementById('audio');
+
+var onClick = function() {
+    audio.play(); // audio will load and then play
+};
+
+button.addEventListener('click', onClick, false);
+
+
+var onClick2 = function() {
+    audio.pause(); // audio will load and then play
+};
+
+pausebutton.addEventListener('click', onClick2, false);

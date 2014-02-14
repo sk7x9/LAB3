@@ -1,0 +1,23 @@
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+<p>1. Geolocation Service</p>
+<div id="map"></div>
+<p>2. Show the directions between two places</p>
+<table>
+    <tr><td>Place A:</td> 
+    <td><input type ="text" id="A" name="Place A"></td></tr>
+    <tr><td>Place B:</td>
+     <td><input type="text" id="B" name="Place B"></td></tr>
+  </table>
+<button id="button">Show</button>
+        <button id="clbutton">Back</button>
+<div id="map_view" style="height: 600px; width: 600px"></div>
+        <p>3. Image </p>
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+        <p>4. Audio </p>
+    <audio id="audio">
+ <source src="http://dl.dropbox.com/u/1538714/article_resources/song.m4a" type="audio/mpeg" />
+</audio>
+<button id="playbutton">Play</button>
+<button id="pausebutton">Pause</button>
+        
